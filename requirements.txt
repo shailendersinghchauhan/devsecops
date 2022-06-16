@@ -1,0 +1,8 @@
+anchorecli
+ansible-lint
+black
+cyclonedx-bom
+detect-secrets
+pylint
+trufflehog
+yamllint
