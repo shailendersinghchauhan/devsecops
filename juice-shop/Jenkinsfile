@@ -22,7 +22,7 @@ pipeline {
                     // Use commit tag if it has been tagged
                     tag = sh(returnStdout: true, script: "git tag --contains").trim()
                     if ("$tag" == "") {
-                        if ("${BRANCH_NAME}" == "master") {
+                        if ("${BRANCH_NAME}" == "main") {
                             tag = "latest"
                         } else {
                             tag = "${BRANCH_NAME}"
