@@ -14,26 +14,6 @@ pipeline {
 
     agent any
 
-    stages {
-        // Detect new secrets added since last successful build
-        stage("Build image") {
-            steps {
-                script {
-                    // Use commit tag if it has been tagged
-                    tag = sh(returnStdout: true, script: "git tag --contains").trim()
-                    image = docker.build("$DOCKER_IMAGE:$tag")
-                }
-            }
-        }
-
-        stage("Push to registry") {
-            steps {
-                script {
-                    sh label: "Push to registry", script: "docker push ${DOCKER_IMAGE}:$tag"
-                }
-            }
-        }
-
         stage("Scan container") {
             agent {
                 docker {
